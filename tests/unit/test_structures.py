@@ -36,8 +36,6 @@ def test_event_row():
     result_row = event.hotspot_row()
 
     expected_vals = list(event_dict.values())
-    print(expected_vals)
-    print(result_row)
 
     for s in result_row:
         s = int(s) if s.isdigit() else str(s)
