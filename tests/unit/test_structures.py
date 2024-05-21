@@ -7,9 +7,9 @@ def test_initialized_event_defaults():
     event = Event()
     assert event.dur == 0
     assert event.num_calls == 1
-    assert event.ph == ""
     assert event.name == "N/A"
     assert event.cat == "N/A"
+    assert event.ts == 0
 
 
 def test_event_equivalence():
@@ -25,9 +25,9 @@ def test_event_row():
     event_dict: dict[str, str | int] = {
         "dur": 3459876,
         "calls": 1,
-        "ph": "X",
         "name": "gen_conv",
         "cat": "gpu_op",
+        "ts": 87612348765
     }
     event = Event()
     for prop in event_dict.keys():
@@ -48,9 +48,9 @@ def test_event_header():
     expected_hotspot_header = [
             "dur",
             "calls",
-            "ph",
             "name",
-            "category"
+            "category",
+            "timestamp"
         ]
     expected_kdiff_header = [
             "diff",

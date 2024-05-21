@@ -30,9 +30,9 @@ class Event:
         return [
             str(self.dur),
             str(self.num_calls),
-            self.ph,
             self.name,
-            self.cat
+            self.cat,
+            str(self.ts)
         ]
     
     def kdiff_row(self) -> list[str]:
@@ -46,9 +46,9 @@ class Event:
         return [
             "dur",
             "calls",
-            "ph",
             "name",
             "category",
+            "timestamp"
         ]
     
     @staticmethod
