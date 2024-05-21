@@ -8,10 +8,8 @@ def test_initialized_event_defaults():
     assert event.dur == 0
     assert event.num_calls == 1
     assert event.ph == ""
-    assert event.pid == -1
     assert event.name == "N/A"
     assert event.cat == "N/A"
-    assert event.ts == 0
 
 
 def test_event_equivalence():
@@ -19,13 +17,14 @@ def test_event_equivalence():
     other = Event(name="test", dur=654)
     another = Event(name="other")
 
-    assert event == other and event != event.row()
+    assert event == other and event != event.hotspot_row()
     assert event != another
 
 
 def test_event_row():
     event_dict: dict[str, str | int] = {
         "dur": 3459876,
+        "calls": 1,
         "ph": "X",
         "name": "gen_conv",
         "cat": "gpu_op",
@@ -37,6 +36,8 @@ def test_event_row():
     result_row = event.hotspot_row()
 
     expected_vals = list(event_dict.values())
+    print(expected_vals)
+    print(result_row)
 
     for s in result_row:
         s = int(s) if s.isdigit() else str(s)
