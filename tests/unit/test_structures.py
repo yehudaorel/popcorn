@@ -56,7 +56,7 @@ def test_event_header():
     expected_kdiff_header = [
             "diff",
             "name",
-            "cat"
+            "category"
         ]
     actual_hotspot_header = Event.hotspot_header()
     actual_kdiff_header = Event.kdiff_header()
