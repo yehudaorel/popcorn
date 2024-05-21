@@ -27,16 +27,14 @@ def test_event_row():
     event_dict: dict[str, str | int] = {
         "dur": 3459876,
         "ph": "X",
-        "pid": 1,
         "name": "gen_conv",
         "cat": "gpu_op",
-        "ts": 87612348765
     }
     event = Event()
     for prop in event_dict.keys():
         setattr(event, prop, event_dict[prop])
     
-    result_row = event.row()
+    result_row = event.hotspot_row()
 
     expected_vals = list(event_dict.values())
 
@@ -48,27 +46,25 @@ def test_event_row():
 
 
 def test_event_header():
-    expected_header = [
+    expected_hotspot_header = [
             "dur",
             "calls",
             "ph",
-            "pid",
             "name",
-            "category",
-            "timestamp"
+            "category"
         ]
     expected_kdiff_header = [
             "diff",
             "name",
             "cat"
         ]
-    actual_header = Event.header()
+    actual_hotspot_header = Event.hotspot_header()
     actual_kdiff_header = Event.kdiff_header()
 
-    for s in expected_header:
-        assert s in actual_header
-    for s in actual_header:
-        assert s in expected_header
+    for s in expected_hotspot_header:
+        assert s in actual_hotspot_header
+    for s in actual_hotspot_header:
+        assert s in expected_hotspot_header
 
     for s in expected_kdiff_header:
         assert s in actual_kdiff_header
